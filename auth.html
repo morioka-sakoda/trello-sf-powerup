@@ -20,7 +20,7 @@
       t.getRestApi()
         .authorize({ scope: 'read', expiration: 'never' })
         .then(function () {
-          return t.popup({ title: 'SalesforceにToDoを発行', url: './popup.html', height: 420 });
+          return t.popup({ title: 'SalesforceにToDoを発行', url: './popup.html', height: 560 });
         })
         .catch(function () {
           t.alert({ message: 'アカウントの確認がキャンセルされました', display: 'warning' });

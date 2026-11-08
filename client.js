@@ -8,7 +8,7 @@ function openTaskPopup(t) {
     if (!authorized) {
       return t.popup({ title: 'Trelloアカウントの確認', url: './auth.html', height: 140 });
     }
-    return t.popup({ title: 'SalesforceにToDoを発行', url: './popup.html', height: 420 });
+    return t.popup({ title: 'SalesforceにToDoを発行', url: './popup.html', height: 560 });
   });
 }
 
@@ -34,7 +34,7 @@ TrelloPowerUp.initialize({
   'card-detail-badges': function (t) {
     return t.get('card', 'shared', 'sfTask').then(function (task) {
       if (!task) return [];
-            return [{
+      return [{
         title: 'Salesforce',
         text: 'ToDoを開く',
         color: 'blue',

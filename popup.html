@@ -7,12 +7,17 @@
   <script src="./config.js"></script>
   <style>
     body { padding: 4px 8px 8px; font-size: 14px; line-height: 1.5; }
-    label { display: block; font-weight: 600; margin: 8px 0 2px; }
+    label.f { display: block; font-weight: 600; margin: 8px 0 2px; }
     input, select, textarea { width: 100%; box-sizing: border-box; margin: 0; }
-    textarea { height: 72px; resize: vertical; }
+    textarea { height: 64px; resize: vertical; }
     .hint { font-size: 12px; color: #5e6c84; margin-top: 2px; }
     .row { display: flex; gap: 8px; }
     .row > div { flex: 1; }
+    #cand { border: 1px solid #dfe1e6; border-radius: 4px; padding: 6px 8px; }
+    #cand label { display: flex; gap: 8px; align-items: flex-start; padding: 3px 0; cursor: pointer; font-weight: 400; }
+    #cand input[type=radio] { width: auto; margin-top: 4px; flex: none; }
+    #cand .sub { font-size: 12px; color: #5e6c84; }
+    #cand .note { font-size: 12px; color: #a54800; margin-bottom: 4px; }
     #msg { margin-top: 8px; font-size: 13px; }
     #msg.err { color: #c9372c; }
     button { width: 100%; margin-top: 12px; }
@@ -26,16 +31,16 @@
   </div>
 
   <form id="f" hidden>
-    <label for="subject">件名</label>
+    <label class="f" for="subject">件名</label>
     <input id="subject" required maxlength="255">
 
     <div class="row">
       <div>
-        <label for="due">期日</label>
+        <label class="f" for="due">期日</label>
         <input id="due" type="date">
       </div>
       <div>
-        <label for="priority">優先度</label>
+        <label class="f" for="priority">優先度</label>
         <select id="priority">
           <option value="Normal">普通</option>
           <option value="High">高</option>
@@ -44,11 +49,14 @@
       </div>
     </div>
 
-    <label for="whatId">関連先（任意）</label>
-    <input id="whatId" placeholder="商談・取引先のURLかID">
-    <div class="hint">SalesforceのレコードURLをそのまま貼り付けられます</div>
+    <label class="f">お客様</label>
+    <div id="cand"><div class="hint">カード名からお客様を検索しています…</div></div>
 
-    <label for="memo">メモ</label>
+    <label class="f" for="whatId">関連先を直接指定（任意）</label>
+    <input id="whatId" placeholder="取引先・商談のURLかID">
+    <div class="hint">入力すると、上のお客様より優先されます</div>
+
+    <label class="f" for="memo">メモ</label>
     <textarea id="memo"></textarea>
     <div class="hint">カードのURLは自動で説明欄に入ります</div>
 
