@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://p.trellocdn.com/power-up.min.css">
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  <script src="./config.js"></script>
+  <style>
+    body { padding: 4px 8px; font-size: 14px; line-height: 1.5; }
+    p { margin: 0 0 12px; }
+  </style>
+</head>
+<body>
+  <p>ToDoの担当者を決めるため、最初に一度だけTrelloアカウントを確認します。</p>
+  <button id="auth" class="mod-primary">アカウントを確認する</button>
+  <script>
+    var CFG = window.SF_POWERUP_CONFIG;
+    var t = window.TrelloPowerUp.iframe({ appKey: CFG.appKey, appName: CFG.appName });
+    document.getElementById('auth').addEventListener('click', function () {
+      t.getRestApi()
+        .authorize({ scope: 'read', expiration: 'never' })
+        .then(function () {
+          return t.popup({ title: 'SalesforceにToDoを発行', url: './popup.html', height: 420 });
+        })
+        .catch(function () {
+          t.alert({ message: 'アカウントの確認がキャンセルされました', display: 'warning' });
+        });
+    });
+  </script>
+</body>
+</html>

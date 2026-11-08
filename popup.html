@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://p.trellocdn.com/power-up.min.css">
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  <script src="./config.js"></script>
+  <style>
+    body { padding: 4px 8px 8px; font-size: 14px; line-height: 1.5; }
+    label { display: block; font-weight: 600; margin: 8px 0 2px; }
+    input, select, textarea { width: 100%; box-sizing: border-box; margin: 0; }
+    textarea { height: 72px; resize: vertical; }
+    .hint { font-size: 12px; color: #5e6c84; margin-top: 2px; }
+    .row { display: flex; gap: 8px; }
+    .row > div { flex: 1; }
+    #msg { margin-top: 8px; font-size: 13px; }
+    #msg.err { color: #c9372c; }
+    button { width: 100%; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div id="done" hidden>
+    <p>このカードはSalesforceにToDo発行済みです。</p>
+    <button id="open" class="mod-primary">Salesforceで開く</button>
+    <button id="redo">内容を更新して再送する</button>
+  </div>
+
+  <form id="f" hidden>
+    <label for="subject">件名</label>
+    <input id="subject" required maxlength="255">
+
+    <div class="row">
+      <div>
+        <label for="due">期日</label>
+        <input id="due" type="date">
+      </div>
+      <div>
+        <label for="priority">優先度</label>
+        <select id="priority">
+          <option value="Normal">普通</option>
+          <option value="High">高</option>
+          <option value="Low">低</option>
+        </select>
+      </div>
+    </div>
+
+    <label for="whatId">関連先（任意）</label>
+    <input id="whatId" placeholder="商談・取引先のURLかID">
+    <div class="hint">SalesforceのレコードURLをそのまま貼り付けられます</div>
+
+    <label for="memo">メモ</label>
+    <textarea id="memo"></textarea>
+    <div class="hint">カードのURLは自動で説明欄に入ります</div>
+
+    <button id="send" type="submit" class="mod-primary">ToDoを発行</button>
+    <div id="msg"></div>
+  </form>
+
+  <script src="./popup.js"></script>
+</body>
+</html>
