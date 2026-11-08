@@ -95,7 +95,8 @@ Promise.all([
   var task = res[1];
   if (task) {
     $('done').hidden = false;
-    $('open').onclick = function () { window.open(task.url, '_blank'); t.closePopup(); };
+    $('open').href = task.url;
+    $('open').onclick = function () { setTimeout(function () { t.closePopup(); }, 300); };
     $('redo').onclick = showForm;
     t.sizeTo('body');
   } else {

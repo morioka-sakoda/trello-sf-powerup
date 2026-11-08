@@ -38,8 +38,10 @@ TrelloPowerUp.initialize({
         title: 'Salesforce',
         text: 'ToDoを開く',
         color: 'blue',
-        url: task.url,
-        target: '_blank'
+        // Trelloはバッジの url を同じタブで開くため、ポップアップのリンクから新しいタブで開く
+        callback: function (t2) {
+          return t2.popup({ title: 'Salesforce', url: './open.html', height: 60 });
+        }
       }];
     });
   },

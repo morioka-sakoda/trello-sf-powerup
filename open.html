@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://p.trellocdn.com/power-up.min.css">
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  <script src="./config.js"></script>
+  <style>
+    body { padding: 4px 8px 8px; font-size: 14px; }
+    a.open {
+      display: block; text-align: center; padding: 8px 12px; border-radius: 3px;
+      background: #0c66e4; color: #fff; font-weight: 600; text-decoration: none;
+    }
+    a.open:hover { background: #0055cc; }
+    p { margin: 0; color: #5e6c84; }
+  </style>
+</head>
+<body>
+  <a id="open" class="open" target="_blank" rel="noopener" hidden>SalesforceでToDoを開く</a>
+  <p id="none" hidden>このカードはまだToDoを発行していません。</p>
+  <script>
+    var CFG = window.SF_POWERUP_CONFIG;
+    var t = window.TrelloPowerUp.iframe({ appKey: CFG.appKey, appName: CFG.appName });
+    t.get('card', 'shared', 'sfTask').then(function (task) {
+      if (task && task.url) {
+        var a = document.getElementById('open');
+        a.href = task.url;
+        a.hidden = false;
+        // 新しいタブで開いたら、ポップアップを閉じる
+        a.addEventListener('click', function () { setTimeout(function () { t.closePopup(); }, 300); });
+      } else {
+        document.getElementById('none').hidden = false;
+      }
+      t.sizeTo('body');
+    });
+  </script>
+</body>
+</html>
