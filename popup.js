@@ -122,6 +122,7 @@ $('f').addEventListener('submit', function (e) {
     dueDate: $('due').value,
     priority: $('priority').value,
     whatId: manual || (cand ? cand.accountId : ''),
+    whoId: !manual && cand ? cand.personContactId : '',
     vehicleLabel: !manual && cand ? (cand.vehicleName + ' ' + cand.plate) : '',
     memo: $('memo').value.trim()
   }).then(function (data) {
