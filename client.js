@@ -34,11 +34,12 @@ TrelloPowerUp.initialize({
   'card-detail-badges': function (t) {
     return t.get('card', 'shared', 'sfTask').then(function (task) {
       if (!task) return [];
-      return [{
+            return [{
         title: 'Salesforce',
         text: 'ToDoを開く',
         color: 'blue',
-        callback: function (t2) { return t2.navigate({ url: task.url }); }
+        url: task.url,
+        target: 'Salesforce'
       }];
     });
   },
