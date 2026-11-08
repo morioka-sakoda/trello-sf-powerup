@@ -42,7 +42,7 @@ Promise.all([
   var task = res[1];
   if (task) {
     $('done').hidden = false;
-    $('open').onclick = function () { t.navigate({ url: task.url }); t.closePopup(); };
+    $('open').onclick = function () { window.open(task.url, '_blank'); t.closePopup(); };
     $('redo').onclick = showForm;
     t.sizeTo('body');
   } else {
