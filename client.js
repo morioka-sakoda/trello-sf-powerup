@@ -39,7 +39,7 @@ TrelloPowerUp.initialize({
         text: 'ToDoを開く',
         color: 'blue',
         url: task.url,
-        target: 'Salesforce'
+        target: '_blank'
       }];
     });
   },
